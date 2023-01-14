@@ -36,6 +36,7 @@ export class MtgcardComponent implements OnInit {
         return null;
       },
       error: (error) => {
+        console.log("Entro en el error");
         this.loading = false;
         this.timeoutReturnButton = true;
       },
