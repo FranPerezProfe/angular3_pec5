@@ -12,7 +12,7 @@ export class MtgcardComponent implements OnInit {
   mtgcard?: Card;
   panelOpenState = false;
   loading: boolean = true;
-  timeoutReturnButton: boolean = false;
+  //timeoutReturnButton: boolean = false;
 
   constructor(
     private mtgService: MtgcardsService,
@@ -26,7 +26,7 @@ export class MtgcardComponent implements OnInit {
     // Ese 'id' tiene que ser el parámetro que está definido en app-routing.module.ts
     const identifier = this.activatedRoute.snapshot.paramMap.get("id");
 
-    this.mtgService.getMtgcardById(identifier!).subscribe({
+    /*this.mtgService.getMtgcardById(identifier!).subscribe({
       next: (mtgcard) => {
         this.loading = false;
         if (!mtgcard) {
@@ -40,6 +40,16 @@ export class MtgcardComponent implements OnInit {
         this.loading = false;
         this.timeoutReturnButton = true;
       },
+    });*/
+
+    this.mtgService.getMtgcardById(identifier!).subscribe((mtgcard) => {
+      this.loading = false;
+      if (!mtgcard) {
+        return this.router.navigateByUrl("/");
+      }
+      this.mtgcard = mtgcard;
+      console.log(this.mtgcard);
+      return null;
     });
   }
 }
