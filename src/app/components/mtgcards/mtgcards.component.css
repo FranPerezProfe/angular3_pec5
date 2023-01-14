@@ -1,0 +1,44 @@
+.container {
+    margin: auto;
+    width: 90%;
+}
+
+h1 {
+    margin-top: 30px;
+}
+
+.card_container {
+    width: 100%;
+}
+
+.card_container .buttons {
+    text-align: end;
+}
+
+mat-icon {
+    padding: 8px;
+}
+
+mat-icon:hover {
+    background-color: lightgrey;
+    border-radius: 50%;
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.loading {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    background-color: #00000057;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

@@ -1,0 +1,36 @@
+<div class="container">
+  <h1>MtgCards</h1>
+  <div class="card_container">
+    <div class="buttons">
+      <button
+        mat-icon-button
+        aria-label="Card view"
+        (click)="changeView('cards')"
+      >
+        <mat-icon>view_cozy</mat-icon>
+      </button>
+      <button
+        mat-icon-button
+        aria-label="List view"
+        (click)="changeView('table')"
+      >
+        <mat-icon>view_list</mat-icon>
+      </button>
+    </div>
+
+    <div class="loading" *ngIf="loading">
+      <mat-spinner></mat-spinner>
+    </div>
+
+    <div *ngIf="viewType === 'cards'">
+      <div [@cardsAnimation]="animationState" class="cards">
+        <div *ngFor="let mtgcard of mtgcards" class="mtg_card">
+          <app-card [item]="mtgcard"></app-card>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="viewType === 'table'">
+      <app-grid [items]="mtgcards"></app-grid>
+    </div>
+  </div>
+</div>

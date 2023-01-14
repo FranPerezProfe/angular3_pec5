@@ -1,0 +1,16 @@
+<mat-card class="card">
+  <mat-card-header>
+    <mat-card-title>{{ item.name }}</mat-card-title>
+    <mat-card-subtitle>{{ item.type }}</mat-card-subtitle>
+  </mat-card-header>
+  <img src="{{ item.imageUrl }}" alt="Photo of a Shiba Inu" />
+  <mat-card-content>
+    <p>
+      {{ item.artist }}
+    </p>
+    <mat-divider></mat-divider>
+  </mat-card-content>
+  <mat-card-footer>
+    <a mat-stroked-button [routerLink]="['mtgcard', item.id]">Details</a>
+  </mat-card-footer>
+</mat-card>

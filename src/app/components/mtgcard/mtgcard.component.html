@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="loading" *ngIf="loading">
+    <mat-spinner></mat-spinner>
+  </div>
+  <div *ngIf="mtgcard" class="card-detail">
+    <h1>{{ mtgcard.name }}</h1>
+    <div class="main-card">
+      <div class="main-card__img">
+        <img src="{{ mtgcard.imageUrl }}" alt="Image {{ mtgcard.id }}" />
+      </div>
+      <div class="main-card__detail">
+        <button mat-raised-button color="warn" routerLink="/">Back</button>
+        <mat-expansion-panel
+          (opened)="panelOpenState = true"
+          (closed)="panelOpenState = false"
+        >
+          <mat-expansion-panel-header>
+            <mat-panel-title> Show all details </mat-panel-title>
+          </mat-expansion-panel-header>
+          <p><strong>Artist: </strong>{{ mtgcard.artist }}</p>
+          <p><strong>Rarity: </strong>{{ mtgcard.rarity }}</p>
+          <p><strong>Mana Cost: </strong>{{ mtgcard.manaCost }}</p>
+          <p><strong>Main Type: </strong>{{ mtgcard.type }}</p>
+          <p><strong>Other Types: </strong></p>
+          <ul>
+            <li *ngFor="let elem of mtgcard.types">{{ elem }}</li>
+          </ul>
+          <p><strong>Set: </strong>{{ mtgcard.setName }}</p>
+          <p><strong>Identifier: </strong>{{ mtgcard.id }}</p>
+          <p><strong>Legalities: </strong></p>
+          <ul>
+            <li *ngFor="let elem of mtgcard.legalities">
+              {{ elem.format }} - {{ elem.legality }}
+            </li>
+          </ul>
+          <p><strong>Original text: </strong>{{ mtgcard.originalText }}</p>
+        </mat-expansion-panel>
+      </div>
+    </div>
+  </div>
+</div>
