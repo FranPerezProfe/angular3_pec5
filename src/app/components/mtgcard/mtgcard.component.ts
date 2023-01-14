@@ -26,7 +26,7 @@ export class MtgcardComponent implements OnInit {
     // Ese 'id' tiene que ser el parámetro que está definido en app-routing.module.ts
     const identifier = this.activatedRoute.snapshot.paramMap.get("id");
 
-    /*this.mtgService.getMtgcardById(identifier!).subscribe({
+    this.mtgService.getMtgcardById(identifier!).subscribe({
       next: (mtgcard) => {
         this.loading = false;
         if (!mtgcard) {
@@ -37,12 +37,12 @@ export class MtgcardComponent implements OnInit {
       },
       error: (error) => {
         console.log("Entro en el error");
-        this.loading = false;
-        this.timeoutReturnButton = true;
+        //this.loading = false;
+        //this.timeoutReturnButton = true;
       },
-    });*/
+    });
 
-    this.mtgService.getMtgcardById(identifier!).subscribe((mtgcard) => {
+    /*this.mtgService.getMtgcardById(identifier!).subscribe((mtgcard) => {
       this.loading = false;
       if (!mtgcard) {
         return this.router.navigateByUrl("/");
@@ -50,6 +50,6 @@ export class MtgcardComponent implements OnInit {
       this.mtgcard = mtgcard;
       console.log(this.mtgcard);
       return null;
-    });
+    });*/
   }
 }
