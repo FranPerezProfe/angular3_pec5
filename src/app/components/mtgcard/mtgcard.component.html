@@ -2,10 +2,6 @@
   <div class="loading" *ngIf="loading">
     <mat-spinner></mat-spinner>
   </div>
-  <!--<div class="error" *ngIf="timeoutReturnButton">
-    <p>Error in getting the card</p>
-    <button mat-raised-button color="warn" routerLink="/">Return</button>
-  </div>-->
   <div *ngIf="mtgcard" class="card-detail">
     <h1>{{ mtgcard.name }}</h1>
     <div class="main-card">

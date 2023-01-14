@@ -12,7 +12,6 @@ export class MtgcardComponent implements OnInit {
   mtgcard?: Card;
   panelOpenState = false;
   loading: boolean = true;
-  //timeoutReturnButton: boolean = false;
 
   constructor(
     private mtgService: MtgcardsService,
@@ -36,20 +35,8 @@ export class MtgcardComponent implements OnInit {
         return null;
       },
       error: (error) => {
-        console.log("Entro en el error");
-        //this.loading = false;
-        //this.timeoutReturnButton = true;
+        console.log("Error getting the card");
       },
     });
-
-    /*this.mtgService.getMtgcardById(identifier!).subscribe((mtgcard) => {
-      this.loading = false;
-      if (!mtgcard) {
-        return this.router.navigateByUrl("/");
-      }
-      this.mtgcard = mtgcard;
-      console.log(this.mtgcard);
-      return null;
-    });*/
   }
 }
