@@ -1,17 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Card } from 'src/app/models/mtgcardapi.interface';
-import { MtgcardsService } from 'src/app/services/mtgcards.service';
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
+import { Card } from "src/app/models/mtgcardapi.interface";
+import { MtgcardsService } from "src/app/services/mtgcards.service";
 
 @Component({
-  selector: 'app-mtgcard',
-  templateUrl: './mtgcard.component.html',
-  styleUrls: ['./mtgcard.component.css'],
+  selector: "app-mtgcard",
+  templateUrl: "./mtgcard.component.html",
+  styleUrls: ["./mtgcard.component.css"],
 })
 export class MtgcardComponent implements OnInit {
   mtgcard?: Card;
   panelOpenState = false;
   loading: boolean = true;
+  timeoutReturnButton: boolean = false;
 
   constructor(
     private mtgService: MtgcardsService,
@@ -23,16 +24,21 @@ export class MtgcardComponent implements OnInit {
 
   ngOnInit(): void {
     // Ese 'id' tiene que ser el parámetro que está definido en app-routing.module.ts
-    const identifier = this.activatedRoute.snapshot.paramMap.get('id');
+    const identifier = this.activatedRoute.snapshot.paramMap.get("id");
 
-    this.mtgService.getMtgcardById(identifier!).subscribe((mtgcard) => {
-      this.loading = false;
-      if (!mtgcard) {
-        return this.router.navigateByUrl('/');
-      }
-      this.mtgcard = mtgcard;
-      console.log(this.mtgcard);
-      return null;
+    this.mtgService.getMtgcardById(identifier!).subscribe({
+      next: (mtgcard) => {
+        this.loading = false;
+        if (!mtgcard) {
+          return this.router.navigateByUrl("/");
+        }
+        this.mtgcard = mtgcard;
+        return null;
+      },
+      error: (error) => {
+        this.loading = false;
+        this.timeoutReturnButton = true;
+      },
     });
   }
 }
